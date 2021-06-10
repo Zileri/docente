@@ -1,0 +1,3 @@
+INSERT INTO docente (dni, nombre, grado_ac, email, categoria, create_at, direccion, estado) VALUES ('75142221', 'sara', 'magister', 'saragomez@upeu.edu.pe', 'auxiliar', '2020-05-12', 'jr. lima', 1);
+INSERT INTO docente (dni, nombre, grado_ac, email, categoria, create_at, direccion, estado) VALUES ('48142221', 'jose', 'magister', 'joseruiz@upeu.edu.pe', 'auxiliar', '2020-05-18', 'jr. Peru', 1);
+INSERT INTO docente (dni, nombre, grado_ac, email, categoria, create_at, direccion, estado) VALUES ('29142221', 'miguel', 'magister', 'miguelromero@upeu.edu.pe', 'auxiliar', '2020-05-20', 'jr. junin', 1);

@@ -31,6 +31,7 @@ public class Usuario implements Serializable {
 	
 	//para habilitar o desabilitar al usuario
 	private Boolean enabled;
+	
 	private String nombre;
 	private String apellido;
 	

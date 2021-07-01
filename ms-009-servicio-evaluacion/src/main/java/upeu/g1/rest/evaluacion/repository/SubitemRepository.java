@@ -1,0 +1,15 @@
+package upeu.g1.rest.evaluacion.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import upeu.g1.rest.evaluacion.entity.Item;
+import upeu.g1.rest.evaluacion.entity.Subitem;
+
+public interface SubitemRepository extends JpaRepository<Subitem, Long>{
+
+	public Subitem findByname(String name);
+	public List<Subitem> findByItem(Item item);
+	
+}

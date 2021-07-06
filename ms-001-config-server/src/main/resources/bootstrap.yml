@@ -8,12 +8,12 @@ spring:
     config:
       server:
         git:
-          uri: file:///C:/Users/Zileri/config
+          uri: https://github.com/Zileri/CDO
           searchPaths: config-data
-#          username: ${GIT_USER}
-#          password: ${GIT_PASSWORD}
-#          default-label: "master"
- # security:
- #   user:
- #     name: root
- #     password: zileri  
+          username: Zileri
+          password: Felizdia7
+          default-label: "master"
+  security:
+    user:
+      name: root
+      password: zileri  

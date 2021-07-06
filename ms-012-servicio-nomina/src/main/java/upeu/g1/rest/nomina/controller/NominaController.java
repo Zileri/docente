@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.slf4j.Slf4j;
 import upeu.g1.rest.nomina.entity.Nomina;
 import upeu.g1.rest.nomina.service.NominaService;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/nominas")
 public class NominaController {

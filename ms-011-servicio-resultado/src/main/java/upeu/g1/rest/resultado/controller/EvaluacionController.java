@@ -36,31 +36,19 @@ public class EvaluacionController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(evaluacionService.save(evaluacion));
 	}
 
-	// read
-	@GetMapping("/{id}")
-	public ResponseEntity<?> read(@PathVariable(value = "id") Long evaluacionId) {
-		Optional<Evaluacion> oEvaluacion = evaluacionService.findById(evaluacionId);
-
-		if (!oEvaluacion.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-
-		return ResponseEntity.ok(oEvaluacion);
-	}
-
 	// update
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update(@RequestBody Evaluacion evaluacionDetails,
 			@PathVariable(value = "id") Long evaluacionId) {
-		Optional<Evaluacion> evaluacion = evaluacionService.findById(evaluacionId);
-
-		if (!evaluacion.isPresent()) {
+		log.info("actualizando resultado con id {}", evaluacionId);
+		Evaluacion evaluacion = evaluacionService.getEvaluacion(evaluacionId);
+		if(null == evaluacion) {
+			log.error("No se puede actualizar. Resultado con id {} no encontrado", evaluacionId);
 			return ResponseEntity.notFound().build();
 		}
-
-		BeanUtils.copyProperties(evaluacionDetails, evaluacion.get());
-
-		return ResponseEntity.status(HttpStatus.CREATED).body(evaluacionService.save(evaluacion.get()));
+		evaluacionDetails.setId(evaluacionId);
+		evaluacion=evaluacionService.updateEvaluacion(evaluacion);
+		return ResponseEntity.ok(evaluacion);
 	}
 
 	// delete

@@ -122,7 +122,7 @@ public class ArchivoController {
 	
 	//read por id
 	@GetMapping(value="/{id}")
-	public ResponseEntity<Archivo> getArchivo(@PathVariable("id") long id){
+	public ResponseEntity<Archivo> get(@PathVariable("id") long id){
 		log.info("Obteniendo archivo con id {}", id);
 		Archivo archivo = archivoService.getArchivo(id);
 		if(null == archivo) {

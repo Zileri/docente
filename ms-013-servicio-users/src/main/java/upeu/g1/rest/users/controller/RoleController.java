@@ -1,16 +1,14 @@
-package upeu.g1.rest.legajo.controller;
+package upeu.g1.rest.users.controller;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -27,58 +25,60 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
-import upeu.g1.rest.legajo.entity.Legajo;
-import upeu.g1.rest.legajo.service.LegajoService;
+import upeu.g1.rest.users.entity.Role;
+import upeu.g1.rest.users.service.RoleService;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/legajos")
-public class LegajoController {
+@RequestMapping("/api/roles")
+public class RoleController {
 
-	@Value("${server.port}")
-	private Integer port;
-	
 	@Autowired
-	private LegajoService legajoService;
-
-	// create
-
+	private RoleService roleService;
+	
 	@PostMapping
-	public ResponseEntity<Legajo> create(@Valid @RequestBody Legajo legajo, BindingResult result){
-		log.info("creando legajo: {}", legajo);
+	public ResponseEntity<Role> create(@Valid @RequestBody Role role, BindingResult result){
+		log.info("creando rol: {}", role);
 		if(result.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
 		}
-		Legajo legajoDB = legajoService.createLegajo(legajo);
-		return ResponseEntity.status(HttpStatus.CREATED).body(legajoDB);
-	}
-
-	// read
-	@GetMapping
-	public List<Legajo> readAll() {
-
-		List<Legajo> legajos = StreamSupport.stream(legajoService.findAll().spliterator(), false)
-				.collect(Collectors.toList());
-
-		return legajos;
-	}
-
-	// update
-
-	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@RequestBody Legajo legajoDetails, @PathVariable(value = "id") Long legajoId) {
-		log.info("actualizando el legajo con id {}", legajoId);
-
-		Legajo legajo =legajoService.getLegajo(legajoId);
-		if(null == legajo) {
-			log.error("No se puedee actualizar. Legajo con id {} no encontrado", legajoId);
-			return ResponseEntity.notFound().build();
-		}
-		legajoDetails.setId(legajoId);
-		legajo=legajoService.updateLegajo(legajo);
-		return ResponseEntity.ok(legajo);
+		Role roleDB = roleService.createRole(role);
+		return ResponseEntity.status(HttpStatus.CREATED).body(roleDB);
 	}
 	
+	@PutMapping("/{id}")
+	public ResponseEntity<?> update(@RequestBody Role factorDetails, @PathVariable(value = "id") Long roleId) {
+		log.info("actualizando rol con id {}", roleId);
+
+		Role role = roleService.getRole(roleId);
+		if (null == role) {
+			log.error("No se puede actualizar. Rol con id {} no encontrado", roleId);
+			return ResponseEntity.notFound().build();
+		}
+		factorDetails.setId(roleId);
+		role=roleService.updateRole(role);
+		return ResponseEntity.ok(role);
+	}
+	
+	@GetMapping
+	public List<Role> readAll() {
+
+		List<Role> roles = StreamSupport.stream(roleService.findAll().spliterator(), false)
+				.collect(Collectors.toList());
+
+		return roles;
+	}
+	
+	@GetMapping(value="/{id}")
+	public ResponseEntity<Role> get(@PathVariable("id") long id){
+		log.info("Obteniendo rol con id {}", id);
+		Role role = roleService.getRole(id);
+		if(null == role) {
+			log.error("rol con id {} no encontrado", id);
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(role);
+	}
 	
 	
 	private String formatMessage(BindingResult result) {
@@ -100,5 +100,5 @@ public class LegajoController {
 		}
 		return jsonString;
 	}
-
+	
 }

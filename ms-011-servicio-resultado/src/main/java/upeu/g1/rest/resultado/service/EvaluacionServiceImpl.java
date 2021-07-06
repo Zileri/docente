@@ -23,11 +23,11 @@ public class EvaluacionServiceImpl implements EvaluacionService{
 		return evaluacionRepository.findAll();
 	}
 
-	@Override
+	/*@Override
 	@Transactional(readOnly = true)
 	public Page<Evaluacion> findAll(Pageable pageable) {
 		return evaluacionRepository.findAll(pageable);
-	}
+	}*/
 
 	@Override
 	@Transactional(readOnly = true)
@@ -50,6 +50,17 @@ public class EvaluacionServiceImpl implements EvaluacionService{
 	@Override
 	public Evaluacion getEvaluacion(Long id) {
 		return evaluacionRepository.findById(id).orElse(null);
+	}
+
+
+	@Override
+	public Evaluacion updateEvaluacion(Evaluacion evaluacion) {
+		Evaluacion evaluacionDB = getEvaluacion(evaluacion.getId());
+		if(null == evaluacionDB) {
+			return null;
+		}
+		evaluacionDB.setPuntaje(evaluacion.getPuntaje());
+		return evaluacionRepository.save(evaluacion);
 	}
 
 	

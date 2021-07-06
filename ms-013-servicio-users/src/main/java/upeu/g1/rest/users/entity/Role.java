@@ -1,7 +1,8 @@
-package upeu.g1.rest.nomina.entity;
+package upeu.g1.rest.users.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,20 +11,20 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
-@Data
 @Entity
-@Table(name = "nominas")
-public class Nomina implements Serializable{
+@Table(name = "roles")
+@Data
+public class Role implements Serializable{
 
-	private static final long serialVersionUID = 4829271457947521437L;
+	private static final long serialVersionUID = 5801746044424763610L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private boolean estadoActa;
+	@Column(unique = true, length = 30)
+	private String name;
 	
-	private boolean estadoPago;
-	
+	//private String description;
 	
 }

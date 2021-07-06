@@ -23,11 +23,11 @@ public class NominaServiceImpl implements NominaService{
 		return nominaRepository.findAll();
 	}
 
-	@Override
+	/*@Override
 	@Transactional(readOnly = true)
 	public Page<Nomina> findAll(Pageable pageable) {
 		return nominaRepository.findAll(pageable);
-	}
+	}*/
 
 	@Override
 	@Transactional(readOnly = true)
@@ -45,6 +45,22 @@ public class NominaServiceImpl implements NominaService{
 	@Transactional
 	public void deleteById(Long id) {
 		nominaRepository.deleteById(id);
+	}
+
+	@Override
+	public Nomina getNomina(Long id) {
+		return nominaRepository.findById(id).orElse(null);
+	}
+
+	@Override
+	public Nomina updateNomina(Nomina nomina) {
+		Nomina nominaDB = getNomina(nomina.getId());
+		if(null == nominaDB) {
+			return null;
+		}
+		nominaDB.setEstadoActa(true);
+		nominaDB.setEstadoPago(true);
+		return nominaRepository.save(nomina);
 	}
 
 }

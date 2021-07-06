@@ -1,16 +1,14 @@
-package upeu.g1.rest.legajo.controller;
+package upeu.g1.rest.users.controller;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -27,58 +25,61 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
-import upeu.g1.rest.legajo.entity.Legajo;
-import upeu.g1.rest.legajo.service.LegajoService;
+import upeu.g1.rest.users.entity.User;
+import upeu.g1.rest.users.service.UserService;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/legajos")
-public class LegajoController {
+@RequestMapping("/api/users")
+public class UserController {
 
-	@Value("${server.port}")
-	private Integer port;
-	
 	@Autowired
-	private LegajoService legajoService;
-
-	// create
-
+	private UserService userService;
+	
 	@PostMapping
-	public ResponseEntity<Legajo> create(@Valid @RequestBody Legajo legajo, BindingResult result){
-		log.info("creando legajo: {}", legajo);
+	public ResponseEntity<User> create(@Valid @RequestBody User user, BindingResult result){
+		log.info("creando usuario: {}", user);
 		if(result.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
 		}
-		Legajo legajoDB = legajoService.createLegajo(legajo);
-		return ResponseEntity.status(HttpStatus.CREATED).body(legajoDB);
-	}
-
-	// read
-	@GetMapping
-	public List<Legajo> readAll() {
-
-		List<Legajo> legajos = StreamSupport.stream(legajoService.findAll().spliterator(), false)
-				.collect(Collectors.toList());
-
-		return legajos;
-	}
-
-	// update
-
-	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@RequestBody Legajo legajoDetails, @PathVariable(value = "id") Long legajoId) {
-		log.info("actualizando el legajo con id {}", legajoId);
-
-		Legajo legajo =legajoService.getLegajo(legajoId);
-		if(null == legajo) {
-			log.error("No se puedee actualizar. Legajo con id {} no encontrado", legajoId);
-			return ResponseEntity.notFound().build();
-		}
-		legajoDetails.setId(legajoId);
-		legajo=legajoService.updateLegajo(legajo);
-		return ResponseEntity.ok(legajo);
+		User userDB = userService.createUser(user);
+		return ResponseEntity.status(HttpStatus.CREATED).body(userDB);
 	}
 	
+	@PutMapping("/{id}")
+	public ResponseEntity<?> update(@PathVariable(value = "id") Long userId, @RequestBody User userDetails) {
+		log.info("actualizando el usuario con id {}", userId);
+		User user =userService.getUser(userId);
+		if(null == user) {
+			log.error("No se puedee actualizar. Archivo con id {} no encontrado", userId);
+			return ResponseEntity.notFound().build();
+		}
+		userDetails.setId(userId);
+		user=userService.updateUser(user);
+		return ResponseEntity.ok(user);
+	}
+	
+	// read
+	@GetMapping
+	public List<User> readAll() {
+
+		List<User> users = StreamSupport.stream(userService.findAll().spliterator(), false)
+				.collect(Collectors.toList());
+
+		return users;
+	}
+	
+	//read por id
+	@GetMapping(value="/{id}")
+	public ResponseEntity<User> get(@PathVariable("id") long id){
+		log.info("Obteniendo usuario con id {}", id);
+		User user = userService.getUser(id);
+		if(null == user) {
+			log.error("usuario con id {} no encontrado", id);
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(user);
+	}
 	
 	
 	private String formatMessage(BindingResult result) {

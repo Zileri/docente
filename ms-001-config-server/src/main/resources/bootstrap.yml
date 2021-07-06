@@ -6,11 +6,10 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/Zileri/CDO
+          uri: https://github.com/Zileri/CDO.git
           searchPaths: config-data
-          username: Zileri
-          password: Felizdia7
-          default-label: "master"
+          username: ${GIT_USER}
+          password: ${GIT_PASSWORD}
   security:
     user:
       name: root

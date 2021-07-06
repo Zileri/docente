@@ -3,9 +3,9 @@ spring:
     name: users-service
   cloud:
     config:
-      uri: http://localhost:8081
-      username: root
-      password: zileri
+      uri: https://github.com/Zileri/CDO.git
+      username: ${GIT_USER}
+      password: ${GIT_PASSWORD}
  # boot:
  #   admin:
  #     client:

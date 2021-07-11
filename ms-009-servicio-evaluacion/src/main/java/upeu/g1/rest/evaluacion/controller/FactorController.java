@@ -91,6 +91,17 @@ public class FactorController {
 		return factors;
 	}
 
+	@GetMapping(value="/{id}")
+	public ResponseEntity<Factor> get(@PathVariable("id") long id){
+		log.info("Obteniendo factor con id {}", id);
+		Factor factor = factorService.getFactor(id);
+		if(null == factor) {
+			log.error("factor con id {} no encontrado", id);
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(factor);
+	}
+	
 	
 	private String formatMessage(BindingResult result) {
 		List<Map<String, String>> erros = result.getFieldErrors().stream()

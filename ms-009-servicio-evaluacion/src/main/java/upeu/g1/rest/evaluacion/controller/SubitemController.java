@@ -28,6 +28,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
+import upeu.g1.rest.evaluacion.entity.Factor;
 import upeu.g1.rest.evaluacion.entity.Subitem;
 import upeu.g1.rest.evaluacion.service.SubitemService;
 
@@ -89,7 +90,8 @@ public class SubitemController {
 
 		return subitems;
 	}
-
+	
+	
 	private String formatMessage(BindingResult result) {
 		List<Map<String, String>> erros = result.getFieldErrors().stream().map(err -> {
 			Map<String, String> error = new HashMap<>();

@@ -89,6 +89,17 @@ public class SeccionController {
 
 		return secciones;
 	}
+	
+	@GetMapping(value="/{id}")
+	public ResponseEntity<Seccion> get(@PathVariable("id") long id){
+		log.info("Obteniendo seccion con id {}", id);
+		Seccion seccion = seccionService.getSeccion(id);
+		if(null == seccion) {
+			log.error("seccion con id {} no encontrado", id);
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(seccion);
+	}
 
 	private String formatMessage(BindingResult result) {
 		List<Map<String, String>> erros = result.getFieldErrors().stream().map(err -> {

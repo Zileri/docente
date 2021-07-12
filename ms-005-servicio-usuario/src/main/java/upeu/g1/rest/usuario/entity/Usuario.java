@@ -1,6 +1,7 @@
 package upeu.g1.rest.usuario.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -46,6 +47,10 @@ public class Usuario implements Serializable{
 	@JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name="usuario_id"), 
 	inverseJoinColumns = @JoinColumn(name="rol_id"),
 	uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario_id", "rol_id"})})
-	private Rol rol;
+	private List<Rol> roles;
+	
+	public List<Rol> getRoles(){
+		return roles;
+	}
 
 }

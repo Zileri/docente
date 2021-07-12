@@ -1,16 +1,15 @@
 package upeu.g1.rest.usuario.repository;
 
-import java.util.List;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-import upeu.g1.rest.usuario.entity.Rol;
 import upeu.g1.rest.usuario.entity.Usuario;
 
-@Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
+@RepositoryRestResource(path = "usuarios")
+public interface UsuarioRepository extends PagingAndSortingRepository<Usuario, Long>{
+	
+	public Usuario findByName(String name);
+	
+	
 
-	public Usuario findByname(String name);
-	public List<Usuario> findByRol(Rol rol);
 }

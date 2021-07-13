@@ -13,11 +13,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
+import model.Nomina;
+import model.Usuario;
 
 @Data
 @Entity
@@ -54,5 +57,11 @@ public class Docente implements Serializable{
 	@JoinColumn(name = "id_escuela")
 	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 	private Escuela escuela;
+	
+	@Transient
+	private Nomina nomina;
+	
+	@Transient
+	private Usuario usuario;
 	
 }

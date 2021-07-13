@@ -27,7 +27,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
+import upeu.g1.rest.legajo.entity.Archivo;
 import upeu.g1.rest.legajo.entity.Legajo;
+import upeu.g1.rest.legajo.service.ArchivoService;
 import upeu.g1.rest.legajo.service.LegajoService;
 
 @Slf4j
@@ -39,7 +41,7 @@ public class LegajoController {
 	private Integer port;
 	
 	@Autowired
-	private LegajoService legajoService;
+	private LegajoService legajoService;	
 
 	// create
 
@@ -53,6 +55,7 @@ public class LegajoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(legajoDB);
 	}
 
+	
 	// read
 	@GetMapping
 	public List<Legajo> readAll() {
@@ -62,7 +65,8 @@ public class LegajoController {
 
 		return legajos;
 	}
-
+	
+	
 	// update
 
 	@PutMapping("/{id}")

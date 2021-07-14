@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>upeu.g1.rest.config</groupId>
-	<artifactId>ms-001-config-server</artifactId>
+	<artifactId>ms-003-servicio-gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ms-001-config-server</name>
+	<name>ms-003-servicio-gateway</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>

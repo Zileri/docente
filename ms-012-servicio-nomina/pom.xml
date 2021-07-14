@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>upeu.g1.rest.nomina</groupId>
-	<artifactId>ms-011-servicio-nomina</artifactId>
+	<artifactId>ms-012-servicio-nomina</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ms-011-servicio-nomina</name>
+	<name>ms-012-servicio-nomina</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>

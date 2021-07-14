@@ -38,6 +38,8 @@ public class Archivo implements Serializable{
 	@Column(name = "archivo", length = 70)
 	private String name;
 	
+	private String url;
+	
 	@Valid
 	@NotNull(message = "el legajo no puede estar vacio")
 //	@JsonIgnore

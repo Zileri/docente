@@ -1,10 +1,11 @@
 package upeu.g1.rest.legajo.service;
 
+import java.nio.file.Path;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Stream;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.core.io.Resource;
+import org.springframework.web.multipart.MultipartFile;
 
 import upeu.g1.rest.legajo.entity.Archivo;
 import upeu.g1.rest.legajo.entity.Legajo;
@@ -30,5 +31,13 @@ public interface ArchivoService {
 	public List<Archivo> findByLegajo(Legajo legajo);
 	
 	public Archivo updateArchivo(Archivo archivo);
+	
+	public void save(MultipartFile archivo) throws Exception;
+	
+	public Resource load(String name) throws Exception;
+	
+	public void save(List<MultipartFile> archivos) throws Exception;
+	
+	public Stream<Path> loadAll() throws Exception;
 	
 }

@@ -9,7 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import upeu.g1.rest.evaluacion.entity.Factor;
 import upeu.g1.rest.evaluacion.entity.Item;
+import upeu.g1.rest.evaluacion.entity.Seccion;
 import upeu.g1.rest.evaluacion.entity.Subitem;
 import upeu.g1.rest.evaluacion.repository.SubitemRepository;
 
@@ -78,6 +80,16 @@ public class SubitemServiceImpl implements SubitemService{
 	@Override
 	public List<Subitem> findByItem(Item item) {
 		return subitemRepository.findByItem(item);
+	}
+
+	@Override
+	public List<Item> findByFactor(Factor factor) {
+		return subitemRepository.findByFactor(factor);
+	}
+
+	@Override
+	public List<Factor> findBySeccion(Seccion seccion) {
+		return subitemRepository.findBySeccion(seccion);
 	}
 
 }

@@ -34,7 +34,7 @@ import upeu.g1.rest.evaluacion.service.SubitemService;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/subitems")
+@RequestMapping("/api/items")
 public class SubitemController {
 
 	@Autowired

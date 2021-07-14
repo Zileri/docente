@@ -20,7 +20,8 @@ public class LoggingGlobalPreFilter implements GlobalFilter {
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 		logger.info("Global Pre Filter executed");
 		return chain.filter(exchange);
-	}
+	}		
+	
 	
 	@Bean
     public GlobalFilter postGlobalFilter() {
@@ -31,5 +32,4 @@ public class LoggingGlobalPreFilter implements GlobalFilter {
               }));
         };
     }
-
 }

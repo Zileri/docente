@@ -2,11 +2,10 @@ package upeu.g1.rest.usuario;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 
-@EnableEurekaClient
+@EntityScan({"upeu.g1.rest.usuariocommons.entity"})
 @SpringBootApplication
 public class Ms005ServicioUsuarioApplication {
 

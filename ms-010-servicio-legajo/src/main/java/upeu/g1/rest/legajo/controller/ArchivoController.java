@@ -102,12 +102,15 @@ public class ArchivoController {
 	// delete
 	
 	 @DeleteMapping("/{id}") 
-	 public ResponseEntity<Archivo>
-	 delete(@PathVariable(value = "id") Long archivoId) { Archivo delete =
-	 archivoService.deleteArchivo(archivoId); if (delete == null) { return
-	 ResponseEntity.notFound().build(); }
+	 public ResponseEntity<Archivo> delete(@PathVariable(value = "id") Long archivoId) { 
+     Archivo delete = archivoService.deleteArchivo(archivoId); 
+     if (delete == null) { 
+    	 return ResponseEntity.notFound().build(); 
+     }
 	 
-	 return ResponseEntity.ok().build(); }
+	 return ResponseEntity.ok().build(); 
+	 
+	 }
 	 
 
 	// read

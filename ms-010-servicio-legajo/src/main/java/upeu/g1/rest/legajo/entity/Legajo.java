@@ -27,10 +27,10 @@ public class Legajo implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty(message = "el campo no debe ser vacio")
-	private String name;
+	//@NotEmpty(message = "el campo no debe ser vacio")
+	//private String name;
 	
-	private boolean estado;
+	//private boolean estado;
 	
 	@NotNull(message = "el legajo no puede estar vacio")
 	@Temporal(TemporalType.DATE)

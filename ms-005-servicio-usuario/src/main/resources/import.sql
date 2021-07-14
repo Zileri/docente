@@ -1,3 +1,0 @@
-INSERT INTO 'usuarios' (name, lastName, dni, email, password, estado) VALUES ('zileri', 'arapa', '75140004', 'yahairaarapa@upeu.edu.pe', '123', 1 );
-INSERT INTO 'usuarios' (name, lastName, dni, email, password, estado) VALUES ('jose', 'gomez', '25510004', 'josegomez@upeu.edu.pe', '12345', 1 );
-INSERT INTO 'usuarios' (name, lastName, dni, email, password, estado) VALUES ('ana', 'quispe', '7520554', 'anaquispe@upeu.edu.pe', '1234', 1 );

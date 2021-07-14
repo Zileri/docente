@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import upeu.g1.rest.evaluacion.entity.Factor;
 import upeu.g1.rest.evaluacion.entity.Item;
+import upeu.g1.rest.evaluacion.entity.Seccion;
 import upeu.g1.rest.evaluacion.entity.Subitem;
 
 public interface SubitemService {
@@ -26,6 +28,10 @@ public interface SubitemService {
 	public Subitem updateSubitem(Subitem subitem);
 	
 	public List<Subitem> findByItem(Item item);
+	
+	public List<Item> findByFactor(Factor factor);
+	
+	public List<Factor> findBySeccion(Seccion seccion);
 	
 	//public void deleteById(Long id);
 	

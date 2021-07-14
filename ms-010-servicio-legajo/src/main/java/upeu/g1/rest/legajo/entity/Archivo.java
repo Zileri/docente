@@ -44,7 +44,7 @@ public class Archivo implements Serializable{
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_legajo")
 	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-	Legajo legajo;
+	private Legajo legajo;
 	
 	private boolean estado;
 	

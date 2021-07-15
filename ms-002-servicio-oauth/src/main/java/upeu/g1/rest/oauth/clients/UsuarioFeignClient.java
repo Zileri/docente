@@ -11,6 +11,6 @@ import upeu.g1.rest.usuariocommons.entity.Usuario;
 public interface UsuarioFeignClient {
 
 	@GetMapping("/usuarios/search/buscar-username")
-	public Usuario findByName(@RequestParam String name); 
+	public Usuario findByUsername(@RequestParam String username); 
 	
 }

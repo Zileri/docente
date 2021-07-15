@@ -23,7 +23,7 @@ public class InfoAdicionalToken implements TokenEnhancer {
 		Map<String, Object> info = new HashMap<>();
 		var usuario = service.findByUsername(authentication.getName());
 
-		info.put("nombre", usuario.getName());
+		info.put("nombre", usuario.getUsername());
 		info.put("apellido", usuario.getLastName());
 		info.put("correo", usuario.getEmail());
 		

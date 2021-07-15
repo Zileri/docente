@@ -11,7 +11,7 @@ import upeu.g1.rest.usuariocommons.entity.Usuario;
 public interface UsuarioRepository extends PagingAndSortingRepository<Usuario, Long>{
 	
 	@RestResource(path="buscar-username")
-	public Usuario findByName(@Param("username") String name);
+	public Usuario findByUsername(@Param("username") String username);
 	
 	
 
